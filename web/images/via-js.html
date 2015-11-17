@@ -7,11 +7,12 @@
 </head>
 <body>
 
-start canvas<canvas id="canvas1"></canvas>end canvas
+start canvas<canvas id="canvas1" height="300" width="300"></canvas>end canvas
 
-start canvas<canvas id="canvas2"></canvas>end canvas
+start canvas<canvas id="canvas2" height="300" width="300"></canvas>end canvas
 
-<img id="myProfile" src="http://graph.facebook.com/v2.5/52904404/picture">
+<!-- <img id="myProfile" src="http://graph.facebook.com/v2.5/52904404/picture"> -->
+<img id="myProfile" src="dsj.jpg">
 <img id="myFlag" src="lebanon-rect.png"/>
 
 <script>
@@ -39,8 +40,11 @@ $(function(){
 	var ctx=c.getContext("2d");
 	var img1 = document.getElementById('myProfile');
 	var img2 = document.getElementById('myFlag');
-	ctx.drawImage(img1, 0, 0);
-	ctx.drawImage(img2, 0, 0);
+	ctx.save();
+	ctx.drawImage(img1, 0, 0, 300, 300);
+	ctx.globalAlpha = 0.4;
+	ctx.drawImage(img2, 0, 0, 300, 300);
+	ctx.restore();
 	var imgDataUrl = c.toDataURL("image/png");
 	document.write('<img src="' + imgDataUrl + '" width="auto" height="auto"/>');
 
