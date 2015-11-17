@@ -7,36 +7,43 @@
 </head>
 <body>
 
-start canvas<canvas id="myCanvas"></canvas>end canvas
+start canvas<canvas id="canvas1"></canvas>end canvas
 
-start canvas<canvas id="myCanvas"></canvas>end canvas
+start canvas<canvas id="canvas2"></canvas>end canvas
 
+<img id="myProfile" src="http://graph.facebook.com/v2.5/52904404/picture">
+<img id="myFlag" src="lebanon-rect.png"/>
 
 <script>
 $(function(){
 
-	var c=document.getElementById("myCanvas");
+	// var c=document.getElementById("canvas1");
+	// var ctx=c.getContext("2d");
+	// var imageObj1 = new Image();
+	// var imageObj2 = new Image();
+	// imageObj1.src = "http://graph.facebook.com/v2.5/52904404/picture"
+	// imageObj1.onload = function() {
+	//    ctx.drawImage(imageObj1, 0, 0/*, 328, 526*/);
+	//    imageObj2.src = "dsj.jpg";
+	//    imageObj2.onload = function() {
+	//       ctx.drawImage(imageObj2, 15, 85, 300, 300);
+	//       var imgDataUrl = c.toDataURL("image/png");
+	//       document.write('<img src="' + imgDataUrl + '" width="auto" height="auto"/>');
+	//       document.write('<img src="' + imgDataUrl + '" width="auto" height="auto"/>');
+	//       document.write('<img src="' + imgDataUrl + '" width="auto" height="auto"/>');
+	//    }
+	// };
+
+
+	var c = document.getElementById("canvas2");
 	var ctx=c.getContext("2d");
-	var imageObj1 = new Image();
-	var imageObj2 = new Image();
-	imageObj1.src = "lebanon-rect.png"
-	imageObj1.onload = function() {
-	   ctx.drawImage(imageObj1, 0, 0, 328, 526);
-	   imageObj2.src = "dsj.jpg";
-	   imageObj2.onload = function() {
-	      ctx.drawImage(imageObj2, 15, 85, 300, 300);
-	      var imgDataUrl = c.toDataURL("image/png");
-	      document.write('<img src="' + imgDataUrl + '" width="auto" height="auto"/>');
-	      document.write('<img src="' + imgDataUrl + '" width="auto" height="auto"/>');
-	      document.write('<img src="' + imgDataUrl + '" width="auto" height="auto"/>');
-	   }
-	};
+	var img1 = document.getElementById('myProfile');
+	var img2 = document.getElementById('myFlag');
+	ctx.drawImage(img1, 0, 0);
+	ctx.drawImage(img2, 0, 0);
+	var imgDataUrl = c.toDataURL("image/png");
+	document.write('<img src="' + imgDataUrl + '" width="auto" height="auto"/>');
 
-
-	// var canvas = canvasBuild.getContext('canvasObj');
-	// var img = document.getElementById('mergePic1');
-	// var img = document.getElementById('mergePic1');
-	// canvas.drawImage(img, 0, 0);
 
 });
 </script>
