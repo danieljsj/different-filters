@@ -7,53 +7,41 @@
       <h1>OtherOverlays</h1>
     </a>
     <p>Some missing overlays that Facebook hasn't (yet) neatly facilitated... easy to create and download.</p>
-
-
-    <!-- <a type="button" class="btn btn-lg btn-default" href="https://devcenter.heroku.com/articles/getting-started-with-php"><span class="glyphicon glyphicon-flash"></span> Lorem Ipsum</a> -->
-    <!-- <a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/php-getting-started"><span class="glyphicon glyphicon-download"></span> Lorem Ipsum</a> -->
   </div>
 </div>
-<div id="main-content" class="container">
-  <!-- <div class="alert alert-info text-center" role="alert">
-    Lorem Ipsum <a href="https://devcenter.heroku.com/articles/getting-started-with-php" class="alert-link">Lorem Ipsum</a> Lorem Ipsum.
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-info-sign"></span> Lorem Ipsum</h3>
-      <ul>
-        <li>Lorem Ipsum <a href="https://github.com/heroku/php-getting-started">Heroku Button</a> on the repository.</li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-link"></span> Lorem Ipsum</h3>
-      <ul>
-        <li><a href="https://www.heroku.com/home">Lorem Ipsum</a></li>
-     </ul>
-    </div>
-  </div>
-   <div class="alert alert-info text-center" role="alert">
-    Lorem Ipsum
-  </div> -->
-</div>
+<div id="main-content" class="container"></div>
 
 <script type="text/babel">
   $(function(){
-    // ReactDOM.render(
-    //   <h1>Hello, world!</h1>,
-    //   document.getElementById('main-content')
-    // );
 
-    var applyChangedFbUrl = function (){};
+    ReactDOM.render(
+      <h1>Hello, world!</h1>,
+      document.getElementById('main-content')
+    );
 
     var FbUrlForm = React.createClass({
       render: function(){
         return (
-          <div id="FbUrlForm">
-            <input type="text" name="fbUrl" value={this.props.fbUrl} NOTE="having trouble with the onchange... not accepting 'fnName', 'fnName()', fnName, fnName() .. but it does want an onchange" />
+          <form id="FbUrlForm">
+            <input type="text" name="fbUrl" value={this.state.fbUrl} NOTE="having trouble with the onchange... not accepting 'fnName', 'fnName()', fnName, fnName() .. but it does want an onchange" />
             <input type="submit" />
-          </div>
+          </form>
         );
+      },
+
+      handleSubmit: function(e){
+        var ogProfileUrl = fbProfileUrl.replace("www.facebook.com", "graph.facebook.com")
+        $.ajax({
+          url: ogProfileUrl,
+          dataType: 'json',
+          cache: false,
+          success: function(fbUser){
+            this.setState({
+              fbId: fbUser.id,
+              imgUrl: '/silexImages/fbImages/'+fbUser.id+'.jpg'
+            });
+          }.bind(this)
+        });
       }
     });
 
@@ -62,34 +50,51 @@
         return (
           <div id="FbProfilePicImg">
             <label>Original Profile Picture:</label>
-            <img src={this.props.imgUrl} height="300" width="300" />
+            <img src={this.state.imgUrl} height="300" width="300" />
           </div>
         );
       }
     });
 
+    var debugInitialState = {
+      fbUrl: "http://facebook.com/danieljsj",
+      fbId: "1146150058",
+      imgUrl: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+    };
+
+    var prodInitialState = { 
+      fbUrl: "",
+      fbId: "", 
+      imgUrl: ""
+    };
+
 
     var FbProfilePicBox = React.createClass({
+
+      componentDidMount: function(){ this.state = debugInitialState; },
+      
+      getInitialState: function(){
+
+        return debugInitialState;
+      },
+
       render: function(){
         return (
           <div id="FbProfilePicBox">
             <h1>Facebook</h1>
 
-            <FbUrlForm fbUrl={this.props.data.fbUrl} />
+            <FbUrlForm fbUrl={this.state.fbUrl} />
 
-            <FbProfilePicImg imgUrl={this.props.data.imgUrl} />
+            <FbProfilePicImg imgUrl={this.state.imgUrl} />
           </div>
         );
       }
+
     });
 
-    var data = {
-      fbUrl: "http://facebook.com/danieljsj",
-      imgUrl: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
-    };
 
     ReactDOM.render(
-      <FbProfilePicBox data={data} />,
+      <FbProfilePicBox />,
       // React.createElement(FbProfilePicBox, null),
       document.getElementById("main-content")
     );
