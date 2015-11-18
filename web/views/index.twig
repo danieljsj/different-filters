@@ -31,6 +31,37 @@
       imgUrl: ""
     };
 
+    var FbUrlForm = React.createClass({
+      render: function() {
+        return (
+          <form className="fbUrlForm">
+            <label>Your facebook url:
+              <input ref="fbUrl" type="text" placeholder="e.g. http://www.facebook.com/danieljsj"/>
+            </label>
+            <input type="submit" value="show my photo"/>
+          </form>
+        );
+      },
+
+      handleSubmit: function(e){
+        e.preventDefault();
+        var fbUrl = this.refs.fbUrl.value.trim();
+        var graphUrl = fbUrl.replace("www.facebook.com", "graph.facebook.com")
+        $.ajax({
+          url: graphUrl,
+          dataType: 'json',
+          cache: false,
+          success: function(fbUserData){
+            this.parent.setState({
+              fbId: fbUserData.id,
+              imgUrl: '/silexImages/fbImages/'+fbUserData.id+'.jpg'
+            });
+          }.bind(this)
+        });
+      }
+
+    });
+
     var FbProfilePicBox = React.createClass({
 
       getInitialState: function(){
@@ -41,43 +72,22 @@
         return (
           <div id="FbProfilePicBox">
             <h1>Facebook</h1>
-            <form id="FbUrlForm">
-              <input type="text" name="fbUrl" value={this.state.fbUrl} NOTE="having trouble with the onchange... not accepting 'fnName', 'fnName()', fnName, fnName() .. but it does want an onchange" />
-              <input type="submit" />
-            </form>
+            <FbUrlForm />
             <div id="FbProfilePicImg">
               <label>Original Profile Picture:</label>
               <img src={this.state.imgUrl} height="300" width="300" />
             </div>
           </div>
         );
-      },
-
-      handleSubmit: function(e){
-        var ogProfileUrl = fbProfileUrl.replace("www.facebook.com", "graph.facebook.com")
-        $.ajax({
-          url: ogProfileUrl,
-          dataType: 'json',
-          cache: false,
-          success: function(fbUser){
-            this.setState({
-              fbId: fbUser.id,
-              imgUrl: '/silexImages/fbImages/'+fbUser.id+'.jpg'
-            });
-          }.bind(this)
-        });
       }
     });
 
 
     ReactDOM.render(
       <FbProfilePicBox />,
-      // React.createElement(FbProfilePicBox, null),
+
       document.getElementById("main-content")
     );
-
-
-    
 
   });
 
