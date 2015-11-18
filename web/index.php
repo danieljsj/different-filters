@@ -24,7 +24,18 @@ $app->get('/', function() use($app) {
 
 $app->get('/silexImages/fbImages/{fbUserId}.jpg', function($fbUserId) use ($app) {
 	$app['monolog']->addDebug('logging output.');
-	return $app->sendFile(__DIR__.'/images/fbImages/' . $fbUserId . '.jpg' );
+
+	$fbImageContents = file_get_contents('http://graph.facebook.com/v2.5/'.$fbUserId.'/picture?width=300&height=300');
+
+	return $fbImageContents;
+
+	$app->sendFile(__DIR__.'/images/fbImages/' . $fbUserId . '.jpg' );
+
+	$response = new Response($fbImageContents, 200);
+    $response->headers->set('Content-Type', 'image/jpg');
+    return $response;
+
+	// return $app->sendFile(__DIR__.'/images/fbImages/' . $fbUserId . '.jpg' );
 	// 1146150058
 });
 
