@@ -61,6 +61,9 @@ $app->get('/getFbIdFromUrl/{fbUrl}', function($fbUrl) use ($app) {
 	    return $el->nodeValue;
 	}
 
+	// ridiculous; I get a 500 when I run the script for a simple url, and 404 when I run it for a big one.
+	// 0776677 500 (Internal Server Error)k.cors.a.crossDomain.send @ jquery.min.js:4n.extend.ajax @ jquery.min.js:4handleSubmit @ embedded:38ReactErrorUtils.invokeGuardedCallback @ react.js:9696executeDispatch @ react.js:2806executeDispatchesInOrder @ react.js:2829executeDispatchesAndRelease @ react.js:2269executeDispatchesAndReleaseTopLevel @ react.js:2280forEachAccumulated @ react.js:16138EventPluginHub.processEventQueue @ react.js:2485runEventQueueInBatch @ react.js:9721ReactEventEmitterMixin.handleTopLevel @ react.js:9737handleTopLevelWithoutPath @ react.js:9835handleTopLevelImpl @ react.js:9815Mixin.perform @ react.js:15620ReactDefaultBatchingStrategy.batchedUpdates @ react.js:8452batchedUpdates @ react.js:13696ReactEventListener.dispatchEvent @ react.js:9946
+	// I'm officially donezors with this hacky scrapy path. I need to actually use OAuth to get the image. End of story.
 });
 
 $app->run();
