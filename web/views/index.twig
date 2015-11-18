@@ -19,13 +19,37 @@
       document.getElementById('main-content')
     );
 
-    var FbUrlForm = React.createClass({
+    var debugInitialState = {
+      fbUrl: "http://facebook.com/danieljsj",
+      fbId: "1146150058",
+      imgUrl: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+    };
+
+    var prodInitialState = { 
+      fbUrl: "",
+      fbId: "", 
+      imgUrl: ""
+    };
+
+    var FbProfilePicBox = React.createClass({
+
+      getInitialState: function(){
+        return debugInitialState;
+      },
+
       render: function(){
         return (
-          <form id="FbUrlForm">
-            <input type="text" name="fbUrl" value={this.state.fbUrl} NOTE="having trouble with the onchange... not accepting 'fnName', 'fnName()', fnName, fnName() .. but it does want an onchange" />
-            <input type="submit" />
-          </form>
+          <div id="FbProfilePicBox">
+            <h1>Facebook</h1>
+            <form id="FbUrlForm">
+              <input type="text" name="fbUrl" value={this.state.fbUrl} NOTE="having trouble with the onchange... not accepting 'fnName', 'fnName()', fnName, fnName() .. but it does want an onchange" />
+              <input type="submit" />
+            </form>
+            <div id="FbProfilePicImg">
+              <label>Original Profile Picture:</label>
+              <img src={this.state.imgUrl} height="300" width="300" />
+            </div>
+          </div>
         );
       },
 
@@ -43,53 +67,6 @@
           }.bind(this)
         });
       }
-    });
-
-    var FbProfilePicImg = React.createClass({
-      render: function(){
-        return (
-          <div id="FbProfilePicImg">
-            <label>Original Profile Picture:</label>
-            <img src={this.state.imgUrl} height="300" width="300" />
-          </div>
-        );
-      }
-    });
-
-    var debugInitialState = {
-      fbUrl: "http://facebook.com/danieljsj",
-      fbId: "1146150058",
-      imgUrl: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
-    };
-
-    var prodInitialState = { 
-      fbUrl: "",
-      fbId: "", 
-      imgUrl: ""
-    };
-
-
-    var FbProfilePicBox = React.createClass({
-
-      componentDidMount: function(){ this.state = debugInitialState; },
-      
-      getInitialState: function(){
-
-        return debugInitialState;
-      },
-
-      render: function(){
-        return (
-          <div id="FbProfilePicBox">
-            <h1>Facebook</h1>
-
-            <FbUrlForm fbUrl={this.state.fbUrl} />
-
-            <FbProfilePicImg imgUrl={this.state.imgUrl} />
-          </div>
-        );
-      }
-
     });
 
 
