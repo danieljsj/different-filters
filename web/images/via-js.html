@@ -7,20 +7,16 @@
 </head>
 <body>
 
-<!-- start canvas<canvas id="canvas1" height="600" width="600"></canvas>end canvas -->
-
-<!-- start canvas<canvas id="canvas2" height="600" width="600"></canvas>end canvas -->
-
-start canvas<canvas id="canvas3" height="600" width="600"></canvas>end canvas
-
-<!-- <img id="myProfile" class="daniel" src="http://graph.facebook.com/v2.5/52904404/picture?width=600&height=600"> -->
-<!-- <img id="myProfile" class="rebekah" src="http://graph.facebook.com/v2.5/1146150058/picture?width=600&height=600" height="600" width="600"> -->
+<h2>Profile picture:</h2>
 <img id="myProfile" class="rebekah" src="/silexImages/fbImages/1146150058.jpg" height="600" width="600">
 
-
-
-<!-- <img id="myProfile" src="dsj.jpg"> -->
+<h2>Overlay:</h2>
 <img id="myFlag" src="lebanon-rect.png"/ height="600" width="600">
+
+<h2>Canvas:</h2>
+<canvas id="canvas3" height="600" width="600"></canvas>
+
+<h2 id="export">Export</h2>
 
 <script>
 $(function(){
@@ -68,7 +64,7 @@ $(function(){
 		ctx.drawImage(img, 0, 0, 600, 600);
 		ctx.restore();
 		var imgDataUrl = canvas.toDataURL("image/png");
-		$("#myProfile").after('EXPORT: <img src="' + imgDataUrl + '" width="auto" height="auto"/>');
+		$("#export").after('EXPORT: <img src="' + imgDataUrl + '" width="auto" height="auto"/>');
 
 
 
