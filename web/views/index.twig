@@ -48,10 +48,13 @@
         var fbUrl = this.refs.fbUrl.value.trim();
         var graphUrl = fbUrl.replace("www.facebook.com", "graph.facebook.com")
         $.ajax({
-          url: graphUrl,
-          dataType: 'json',
+          type: 'POST',
+          url: 'http://findmyfbid.com/',
+          data: {url:fbUrl},
           cache: false,
-          success: function(fbUserData){
+          dataType: 'json',
+          success: function(response){
+            alert(response);
             this.parent.setState({
               fbId: fbUserData.id,
               imgUrl: '/silexImages/fbImages/'+fbUserData.id+'.jpg'
