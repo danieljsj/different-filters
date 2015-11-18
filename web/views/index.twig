@@ -48,17 +48,10 @@
         var fbUrl = this.refs.fbUrl.value.trim();
         var graphUrl = fbUrl.replace("www.facebook.com", "graph.facebook.com")
         $.ajax({
-          type: 'POST',
-          url: 'http://findmyfbid.com/',
-          data: {url:fbUrl},
+          url: 'getFbIdFromUrl/'+fbUrl,
           cache: false,
-          dataType: 'json',
           success: function(response){
             alert(response);
-            this.parent.setState({
-              fbId: fbUserData.id,
-              imgUrl: '/silexImages/fbImages/'+fbUserData.id+'.jpg'
-            });
           }.bind(this)
         });
       }
@@ -88,7 +81,6 @@
 
     ReactDOM.render(
       <FbProfilePicBox />,
-
       document.getElementById("main-content")
     );
 

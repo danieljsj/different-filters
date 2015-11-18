@@ -34,4 +34,33 @@ $app->get('/silexImages/fbImages/{fbUserId}.jpg', function($fbUserId) use ($app)
 	return $fbImageContents;
 });
 
+$app->get('/getFbIdFromUrl/{fbUrl}', function($fbUrl) use ($app) {
+
+	$app['monolog']->addDebug('logging output.');
+
+	$postdata = http_build_query(
+	    array(
+	        'url' => $fbUrl,
+	    )
+	);
+	$opts = array('http' =>
+	    array(
+	        'method'  => 'POST',
+	        'header'  => 'Content-type: application/x-www-form-urlencoded',
+	        'content' => $postdata
+	    )
+	);
+	$context  = stream_context_create($opts);
+
+	$xml = file_get_contents('http://findmyfbid.com/', false, $context);
+
+	$dom = new DOMDocument;
+	$dom->loadXML($xml);
+	$books = $dom->getElementsByTagName('code');
+	foreach ($els as $el) {
+	    return $el->nodeValue;
+	}
+
+});
+
 $app->run();
