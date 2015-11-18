@@ -14,7 +14,8 @@
 start canvas<canvas id="canvas3" height="300" width="300"></canvas>end canvas
 
 <!-- <img id="myProfile" class="daniel" src="http://graph.facebook.com/v2.5/52904404/picture?width=300&height=300"> -->
-<img id="myProfile" class="rebekah" src="http://graph.facebook.com/v2.5/1146150058/picture?width=300&height=300" height="300" width="300">
+<!-- <img id="myProfile" class="rebekah" src="http://graph.facebook.com/v2.5/1146150058/picture?width=300&height=300" height="300" width="300"> -->
+<img id="myProfile" class="rebekah" src="../../web/silexImages/fbImages/1146150058.jpg" height="300" width="300">
 
 
 
@@ -62,6 +63,7 @@ $(function(){
 		var img = document.getElementById('myProfile');
 		ctx.drawImage(img, 0, 0);
 		var imgDataUrl = canvas.toDataURL("image/png");
+		$("#myProfile").after('EXPORT: <img src="' + imgDataUrl + '" width="auto" height="auto"/>');
 
 
 

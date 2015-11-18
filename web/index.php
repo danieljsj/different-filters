@@ -22,4 +22,10 @@ $app->get('/', function() use($app) {
   return $app['twig']->render('index.twig');
 });
 
+$app->get('/silexImages/fbImages/{fbUserId}.jpg', function($fbUserId) use ($app) {
+	$app['monolog']->addDebug('logging output.');
+	return $app->sendFile(__DIR__.'/images/fbImages/' . $fbUserId . '.jpg' );
+	// 1146150058
+});
+
 $app->run();
