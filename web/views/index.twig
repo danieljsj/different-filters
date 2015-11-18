@@ -39,11 +39,53 @@
 
 <script type="text/babel">
   $(function(){
+    // ReactDOM.render(
+    //   <h1>Hello, world!</h1>,
+    //   document.getElementById('main-content')
+    // );
+
+    var FbUrlForm = React.createClass({
+      render: function(){
+        return (
+          <form>
+            <input type="text" name="fbUrl"></input>
+            <input type="submit"></input>
+          </form>
+        );
+      }
+    });
+
+    var FbProfilePicImg = React.createClass({
+      render: function(){
+        return (
+          <div id="fpProfilePicImg">
+            <label>Original Profile Picture:</label>
+            <img  src="nope"></img>
+          </div>
+        );
+      }
+    });
+
+    var FbProfilePicBox = React.createClass({
+      render: function(){
+        return (
+          <div id="FbProfilePicBox">
+            <h1>Facebook</h1>
+            <FbUrlForm />
+            <FbProfilePicImg />
+          </div>
+        );
+      }
+    });
+
     ReactDOM.render(
-      <h1>Hello, world!</h1>,
-      document.getElementById('main-content')
+      React.createElement(FbProfilePicBox, null),
+      document.getElementById("main-content")
     );
+
   });
+
+
 </script>
 
 {% endblock %}
