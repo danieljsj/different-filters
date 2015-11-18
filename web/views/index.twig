@@ -68,22 +68,29 @@
       }
     });
 
+
     var FbProfilePicBox = React.createClass({
       render: function(){
         return (
           <div id="FbProfilePicBox">
             <h1>Facebook</h1>
 
-            <FbUrlForm fbUrl="http://facebook.com/danieljsj" />
+            <FbUrlForm fbUrl={this.props.data.fbUrl} />
 
-            <FbProfilePicImg imgUrl="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" />
+            <FbProfilePicImg imgUrl={this.props.data.imgUrl} />
           </div>
         );
       }
     });
 
+    var data = {
+      fbUrl: "http://facebook.com/danieljsj",
+      imgUrl: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+    };
+
     ReactDOM.render(
-      React.createElement(FbProfilePicBox, null),
+      <FbProfilePicBox data={data} />,
+      // React.createElement(FbProfilePicBox, null),
       document.getElementById("main-content")
     );
 
