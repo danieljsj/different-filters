@@ -7,9 +7,11 @@
 </head>
 <body>
 
-start canvas<canvas id="canvas1" height="300" width="300"></canvas>end canvas
+<!-- start canvas<canvas id="canvas1" height="300" width="300"></canvas>end canvas -->
 
-start canvas<canvas id="canvas2" height="300" width="300"></canvas>end canvas
+<!-- start canvas<canvas id="canvas2" height="300" width="300"></canvas>end canvas -->
+
+start canvas<canvas id="canvas3" height="300" width="300"></canvas>end canvas
 
 <!-- <img id="myProfile" class="daniel" src="http://graph.facebook.com/v2.5/52904404/picture?width=300&height=300"> -->
 <img id="myProfile" class="rebekah" src="http://graph.facebook.com/v2.5/1146150058/picture?width=300&height=300" height="300" width="300">
@@ -17,7 +19,7 @@ start canvas<canvas id="canvas2" height="300" width="300"></canvas>end canvas
 
 
 <!-- <img id="myProfile" src="dsj.jpg"> -->
-<img id="myFlag" src="lebanon-rect.png"/ height="300" width="300">
+<!-- <img id="myFlag" src="lebanon-rect.png"/ height="300" width="300"> -->
 
 <script>
 $(function(){
@@ -41,20 +43,30 @@ $(function(){
 
 	setTimeout(function(){
 
-		var c = document.getElementById("canvas2");
-		var ctx=c.getContext("2d");
-		var img1 = document.getElementById('myProfile');
-		var img2 = document.getElementById('myFlag');
-		ctx.save();
-		ctx.drawImage(img1, 0, 0, 300, 300);
-		ctx.globalAlpha = 0.4;
-		ctx.drawImage(img2, 0, 0, 300, 300);
-		ctx.restore();
-		var imgDataUrl = c.toDataURL("image/png");
-		$("#myFlag").after('<img src="' + imgDataUrl + '" width="auto" height="auto"/>');
+		// var c = document.getElementById("canvas2");
+		// var ctx=c.getContext("2d");
+		// var img1 = document.getElementById('myProfile');
+		// var img1
+		// var img2 = document.getElementById('myFlag');
+		// ctx.save();
+		// ctx.drawImage(img1, 0, 0, 300, 300);
+		// ctx.globalAlpha = 0.4;
+		// // ctx.drawImage(img2, 0, 0, 300, 300);
+		// ctx.restore();
+		// var imgDataUrl = c.toDataURL("image/png");
+		// $("#myFlag").after('<img src="' + imgDataUrl + '" width="auto" height="auto"/>');
+
+
+		var canvas = document.getElementById("canvas3");
+		var ctx = canvas.getContext('2d');
+		var img = document.getElementById('myProfile');
+		ctx.drawImage(img, 0, 0);
+		var imgDataUrl = canvas.toDataURL("image/png");
+
+
 
 	}, 500);
-	
+
 });
 </script>
 
