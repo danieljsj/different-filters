@@ -40,7 +40,7 @@ $(function(){
 	//    }
 	// };
 
-	setTimeout(generateImage, 1500);
+	setTimeout(generateImage, 300);
 
 });
 
@@ -71,7 +71,7 @@ function generateImage(){
 		ctx.restore();
 		var imgDataUrl = canvas.toDataURL("image/png");
 		$("#export").after(
-			'EXPORT: <img src="' 
+			'<img src="' 
 			+ imgDataUrl 
 			+ '" width="auto" height="auto"/>'
 		);
