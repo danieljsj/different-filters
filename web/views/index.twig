@@ -34,7 +34,7 @@
     var FbUrlForm = React.createClass({
       render: function() {
         return (
-          <form className="fbUrlForm">
+          <form className="fbUrlForm" onSubmit={this.handleSubmit}>
             <label>Your facebook url:
               <input ref="fbUrl" type="text" placeholder="e.g. http://www.facebook.com/danieljsj"/>
             </label>
