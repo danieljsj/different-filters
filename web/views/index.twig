@@ -48,7 +48,7 @@
         var fbUrl = this.refs.fbUrl.value.trim();
         var graphUrl = fbUrl.replace("www.facebook.com", "graph.facebook.com")
         $.ajax({
-          url: 'getFbIdFromUrl/'+fbUrl,
+          url: 'getFbIdFromUrl/'+encodeURIComponent(fbUrl),
           cache: false,
           success: function(response){
             alert(response);

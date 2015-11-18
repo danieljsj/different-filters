@@ -40,7 +40,7 @@ $app->get('/getFbIdFromUrl/{fbUrl}', function($fbUrl) use ($app) {
 
 	$postdata = http_build_query(
 	    array(
-	        'url' => $fbUrl,
+	        'url' => htmlentities($fbUrl),
 	    )
 	);
 	$opts = array('http' =>
