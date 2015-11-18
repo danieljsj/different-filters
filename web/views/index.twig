@@ -13,7 +13,7 @@
     <!-- <a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/php-getting-started"><span class="glyphicon glyphicon-download"></span> Lorem Ipsum</a> -->
   </div>
 </div>
-<div class="container">
+<div id="main-content" class="container">
   <!-- <div class="alert alert-info text-center" role="alert">
     Lorem Ipsum <a href="https://devcenter.heroku.com/articles/getting-started-with-php" class="alert-link">Lorem Ipsum</a> Lorem Ipsum.
   </div>
@@ -36,5 +36,12 @@
     Lorem Ipsum
   </div> -->
 </div>
+
+<script src="/scripts/profilePictures.js" type="text/babel">
+ReactDOM.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('main-content')
+);
+</script>
 
 {% endblock %}
